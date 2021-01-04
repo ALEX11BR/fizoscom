@@ -4,18 +4,20 @@ import SmoothieComponent, { TimeSeries } from 'react-smoothie';
 interface Props {
     fn: (val: number) => number;
     id: string;
+    height: number;
+    color: string;
 }
 
 function Graph(props: Props) {
     var i=0;
     var line = new TimeSeries();
     setInterval(() => {
-        line.append(Date.now(),props.fn(i++))
+        line.append(Date.now(), props.fn(i++))
     }, 40);
     return (
-        <SmoothieComponent series={[{
+        <SmoothieComponent maxValue={props.height/2} minValue={-props.height/2} series={[{
             data: line,
-            strokeStyle: { g: 255 },
+            strokeStyle: props.color,
             lineWidth: 4,
         }]}/>
     );
