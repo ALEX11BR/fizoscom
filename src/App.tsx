@@ -20,8 +20,8 @@ function App() {
     <Container>
       <Row><h1>Oscilații de compus</h1></Row>
       <Row xs={12}><ListGroup>
-        {oscilatii.map((oscilatie) => {
-          return <Oscilatie osci={oscilatie}/>
+        {oscilatii.map((oscilatie, index) => {
+          return <Oscilatie osci={oscilatie} index={index}/>
         })}
         <ListGroup.Item action active onClick={addOsci}><BsPlusCircleFill /> Adaugă oscilație nouă</ListGroup.Item>
       </ListGroup></Row>
