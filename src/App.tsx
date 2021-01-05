@@ -4,13 +4,7 @@ import { BsPlusCircleFill } from 'react-icons/bs';
 import randomColor from 'randomcolor';
 
 import Graph from './Graph';
-
-interface Osci {
-  color: string,
-  amplitudine: number,
-  pulsatie: number,
-  fazaInitiala: number
-};
+import Oscilatie from './Oscilatie';
 
 function App() {
   const [ oscilatii, setOscilatii ] = useState<Osci[]>([])
@@ -27,7 +21,7 @@ function App() {
       <Row><h1>Oscilații de compus</h1></Row>
       <Row xs={12}><ListGroup>
         {oscilatii.map((oscilatie) => {
-          return <ListGroup.Item>{oscilatie.color}</ListGroup.Item>
+          return <Oscilatie osci={oscilatie}/>
         })}
         <ListGroup.Item action active onClick={addOsci}><BsPlusCircleFill /> Adaugă oscilație nouă</ListGroup.Item>
       </ListGroup></Row>
