@@ -14,7 +14,7 @@ function Graph(props: Props) {
     line.append(Date.now(), props.fn(i++))
   }, 40);
   return (
-   <SmoothieComponent responsive maxValue={props.height/2} minValue={-props.height/2} series={[{
+   <SmoothieComponent height={props.height} responsive maxValue={props.height/2} minValue={-props.height/2} series={[{
      data: line,
      strokeStyle: props.color,
      lineWidth: 4,
