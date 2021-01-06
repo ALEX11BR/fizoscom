@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Container, ListGroup, Row } from 'react-bootstrap';
-import { BsPlusCircleFill } from 'react-icons/bs';
+import { Grid, Paper, Table, TableBody, Button } from '@material-ui/core';
+import { AddCircle } from '@material-ui/icons'
 import randomColor from 'randomcolor';
 
 import Graph from './Graph';
@@ -17,20 +17,27 @@ function App() {
     }]);
   };
   return (
-    <Container>
-      <Row><h1>Oscilații de compus</h1></Row>
-      <Row xs={12}><ListGroup>
-        {oscilatii.map((oscilatie, index) => {
-          return <Oscilatie osci={oscilatie} index={index}/>
-        })}
-        <ListGroup.Item action active onClick={addOsci}><BsPlusCircleFill /> Adaugă oscilație nouă</ListGroup.Item>
-      </ListGroup></Row>
-      <hr />
-      <Row><h1>Oscilație rezultantă</h1></Row>
-      <Row xs={12}>
-        <Graph fn={(a) => 100*Math.sin(a/10)} height={200} color="#ffffff" />
-      </Row>
-    </Container>
+    <Grid container spacing={1}>
+      <Grid item xs={12} md={6}>
+        <Paper>
+          <h2>Oscilații de compus</h2>
+          <Table>
+            <TableBody>
+              {oscilatii.map((oscilatie, index) => {
+                return <Oscilatie osci={oscilatie} index={index}/>
+              })}
+            </TableBody>
+          </Table>
+          <Button startIcon={<AddCircle />} onClick={addOsci}>Adaugă</Button>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <Paper>
+          <h2>Oscilație rezultantă</h2>
+          <Graph fn={(a) => 100*Math.sin(a/10)} height={200} color="#ffffff" />
+        </Paper>
+      </Grid>
+    </Grid>
   );
 }
 
