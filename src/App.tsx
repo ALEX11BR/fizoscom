@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, ListGroup, Row } from 'react-bootstrap';
+import { Row, Col, Card } from 'antd';
 import { BsPlusCircleFill } from 'react-icons/bs';
 import randomColor from 'randomcolor';
 
@@ -17,20 +17,22 @@ function App() {
     }]);
   };
   return (
-    <Container>
-      <Row><h1>Oscilații de compus</h1></Row>
-      <Row xs={12}><ListGroup>
-        {oscilatii.map((oscilatie, index) => {
-          return <Oscilatie osci={oscilatie} index={index}/>
-        })}
-        <ListGroup.Item action active onClick={addOsci}><BsPlusCircleFill /> Adaugă oscilație nouă</ListGroup.Item>
-      </ListGroup></Row>
-      <hr />
-      <Row><h1>Oscilație rezultantă</h1></Row>
-      <Row xs={12}>
-        <Graph fn={(a) => 100*Math.sin(a/10)} height={200} color="#ffffff" />
-      </Row>
-    </Container>
+    <Row>
+      <Col>
+        <Card title="Oscilații de compus" extra={
+          <a href="#" onClick={addOsci}>Adaugă</a>
+        }>
+          {oscilatii.map((oscilatie, index) => {
+            return <Oscilatie osci={oscilatie} index={index}/>
+          })}
+        </Card>
+      </Col>
+      <Col>
+        <Card title="Oscilație rezultantă">
+          <Graph fn={(a) => 100*Math.sin(a/10)} height={200} color="#ffffff" />
+        </Card>
+      </Col>
+    </Row>
   );
 }
 
