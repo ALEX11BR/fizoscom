@@ -16,6 +16,12 @@ function App() {
       fazaInitiala: oscilatii[0].fazaInitiala || 0
     }]);
   };
+  function deleteOsci(index: number) {
+    setOscilatii([
+      ...oscilatii.slice(0,index),
+      ...oscilatii.slice(index+1)
+    ]);
+  };
   return (
     <Grid container spacing={1}>
       <Grid item xs={12} md={6}>
@@ -27,7 +33,7 @@ function App() {
           <Table>
             <TableBody>
               {oscilatii.map((oscilatie, index) => {
-                return <Oscilatie osci={oscilatie} index={index}/>
+                return <Oscilatie osci={oscilatie} index={index} onDelete={deleteOsci}/>
               })}
             </TableBody>
           </Table>

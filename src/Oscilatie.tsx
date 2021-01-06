@@ -5,14 +5,15 @@ import Graph from './Graph';
 
 interface Props {
   osci: Osci,
-  index: number
+  index: number,
+  onDelete: (index: number) => void
 }
 
 function Oscilatie(props: Props) {
   return (
     <TableRow>
         <TableCell>
-          <b>{props.index+1}.</b><IconButton size="small"><DeleteForever /></IconButton>
+          <IconButton size="small" onClick={() => props.onDelete(props.index)}><DeleteForever /></IconButton>
         </TableCell>
         <TableCell>
           <Graph color={props.osci.color} height={100} fn={(a) => 50*Math.sin(a/10+5)} />
