@@ -11,16 +11,19 @@ function App() {
   function addOsci() {
     setOscilatii([ ...oscilatii, {
       color: randomColor(),
-      amplitudine: 10,
-      pulsatie: 1,
-      fazaInitiala: 0
+      amplitudine: oscilatii[0].amplitudine || 10,
+      pulsatie: oscilatii[0].pulsatie || 1,
+      fazaInitiala: oscilatii[0].fazaInitiala || 0
     }]);
   };
   return (
     <Grid container spacing={1}>
       <Grid item xs={12} md={6}>
         <Paper>
-          <h2>Oscilații de compus</h2>
+          <Grid container justify="space-between" alignItems="baseline">
+            <Grid item><h2>Oscilații de compus</h2></Grid>
+            <Grid item><Button color="primary" onClick={addOsci} startIcon={<AddCircle />}>Adaugă</Button></Grid>
+          </Grid>
           <Table>
             <TableBody>
               {oscilatii.map((oscilatie, index) => {
@@ -28,12 +31,15 @@ function App() {
               })}
             </TableBody>
           </Table>
-          <Button startIcon={<AddCircle />} onClick={addOsci}>Adaugă</Button>
         </Paper>
       </Grid>
       <Grid item xs={12} md={6}>
         <Paper>
-          <h2>Oscilație rezultantă</h2>
+          <Grid container>
+            <Grid item>
+              <h2>Oscilație rezultantă</h2>
+            </Grid>
+          </Grid>
           <Graph fn={(a) => 100*Math.sin(a/10)} height={200} color="#ffffff" />
         </Paper>
       </Grid>
