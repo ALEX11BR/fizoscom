@@ -3,6 +3,7 @@ import { Container, ListGroup, Row } from 'react-bootstrap';
 import { BsPlusCircleFill } from 'react-icons/bs';
 import randomColor from 'randomcolor';
 
+import { Osci } from './Osci';
 import Graph from './Graph';
 import Oscilatie from './Oscilatie';
 
@@ -28,8 +29,10 @@ function App() {
       <Row xs={12}><ListGroup className={"listgroup"}>
         {oscilatii.map((oscilatie, index) => {
           return (
-            <Oscilatie osci={oscilatie}
+            <Oscilatie
+              key={index}
               index={index}
+              osci={oscilatie}
               onDelete={() => deleteOsci(index)}
               onUpdate={(o: Osci) => setOscilatii([
                 ...oscilatii.slice(0,index),

@@ -2,6 +2,7 @@ import React from 'react';
 import { ListGroupItem, Col, Row, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { BsTrashFill } from 'react-icons/bs';
 
+import { Osci, fnFromOsci } from './Osci';
 import Graph from './Graph';
 
 interface Props {
@@ -20,10 +21,7 @@ function Oscilatie(props: Props) {
       ...props.osci,
       [key]: val
     })
-  }
-  const fnFromOsci = (osci: Osci) => {
-    return (i: number) => osci.amplitudine*Math.sin(osci.fazaInitiala + osci.pulsatie*i*40/1000);
-  }
+  };
   return (
     <ListGroupItem>
       <Row>
