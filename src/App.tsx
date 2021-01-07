@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, ListGroup, Row } from 'react-bootstrap';
+import { Container, ListGroup, Row, Col } from 'react-bootstrap';
 import { BsPlusCircleFill } from 'react-icons/bs';
 import randomColor from 'randomcolor';
 
@@ -31,30 +31,35 @@ function App() {
     return r;
   };
   return (
-    <Container>
-      <Row><h1>Oscilații de compus</h1></Row>
-      <Row xs={12}><ListGroup className={"listgroup"}>
-        {oscilatii.map((oscilatie, index) => {
-          return (
-            <Oscilatie
-              key={index}
-              index={index}
-              osci={oscilatie}
-              onDelete={() => deleteOsci(index)}
-              onUpdate={(o: Osci) => setOscilatii([
-                ...oscilatii.slice(0,index),
-                o,
-                ...oscilatii.slice(index+1)
-              ])}
-            />
-          );
-        })}
-        <ListGroup.Item className="addbutton" action active onClick={addOsci}><BsPlusCircleFill /> Adaugă oscilație nouă</ListGroup.Item>
-      </ListGroup></Row>
-      <hr />
-      <Row><h1>Oscilație rezultantă</h1></Row>
-      <Row xs={12}>
-        <Graph fn={composedFn} height={200} color="#ffffff" />
+    <Container fluid>
+      <Row>
+        <Col xs={12} lg={6}>
+          <h1>Oscilații de compus</h1>
+          <ListGroup className={"listgroup"}>
+            {oscilatii.map((oscilatie, index) => {
+              return (
+                <Oscilatie
+                  key={index}
+                  index={index}
+                  osci={oscilatie}
+                  onDelete={() => deleteOsci(index)}
+                  onUpdate={(o: Osci) => setOscilatii([
+                    ...oscilatii.slice(0,index),
+                    o,
+                    ...oscilatii.slice(index+1)
+                  ])}
+                />
+              );
+            })}
+            <ListGroup.Item className="addbutton" action active onClick={addOsci}><BsPlusCircleFill /> Adaugă oscilație nouă</ListGroup.Item>
+          </ListGroup>
+          <hr />
+        </Col>
+        <Col xs={12} lg={6}>
+          <h1>Oscilație rezultantă</h1>
+          <Graph fn={composedFn} height={200} color="#ffffff" />
+          <hr />
+        </Col>
       </Row>
     </Container>
   );
