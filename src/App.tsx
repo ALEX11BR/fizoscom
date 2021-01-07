@@ -11,7 +11,7 @@ function App() {
   const [ oscilatii, setOscilatii ] = useState<Osci[]>([])
   function addOsci() {
     setOscilatii([ ...oscilatii, {
-      color: randomColor(),
+      color: randomColor({luminosity: 'light'}),
       amplitudine: oscilatii[0] ? oscilatii[0].amplitudine : 10,
       pulsatie: oscilatii[0] ? oscilatii[0].pulsatie : 1,
       fazaInitiala: oscilatii[0] ? oscilatii[0].fazaInitiala : 0

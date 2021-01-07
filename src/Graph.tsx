@@ -1,6 +1,7 @@
 import React from 'react';
 import SmoothieComponent, { TimeSeries } from 'react-smoothie';
 import * as workerTimers from 'worker-timers';
+
 interface Props {
   fn: (val: number) => number,
   height: number,
