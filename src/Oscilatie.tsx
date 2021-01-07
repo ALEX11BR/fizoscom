@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ListGroupItem, Col, Row, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { BsTrashFill } from 'react-icons/bs';
 
@@ -7,13 +7,23 @@ import Graph from './Graph';
 interface Props {
   osci: Osci,
   index: number,
-  onDelete: () => void
+  onDelete: () => void,
+  onUpdate: (o: Osci) => void
 }
-
 function Oscilatie(props: Props) {
-  const [ amplitudine, setAmplitudine ] = useState(props.osci.amplitudine);
-  const [ pulsatie, setPulsatie ] = useState(props.osci.pulsatie);
-  const [ fazaInitiala, setFazaInitiala ] = useState(props.osci.fazaInitiala);
+  const amplitudine = props.osci.amplitudine;
+  const pulsatie = props.osci.pulsatie;
+  const fazaInitiala = props.osci.fazaInitiala;
+
+  const updateProp = (val: number, key: "amplitudine" | "pulsatie" | "fazaInitiala") => {
+    props.onUpdate({
+      ...props.osci,
+      [key]: val
+    })
+  }
+  const fnFromOsci = (osci: Osci) => {
+    return (i: number) => osci.amplitudine*Math.sin(osci.fazaInitiala + osci.pulsatie*i*40/1000);
+  }
   return (
     <ListGroupItem>
       <Row>
@@ -22,12 +32,12 @@ function Oscilatie(props: Props) {
           <Button variant="danger" size="sm" onClick={props.onDelete}><BsTrashFill /></Button>
         </Col>
         <Col>
-          <Graph color={props.osci.color} height={100} fn={(a) => 50*Math.sin(a/10+5)} />
+          <Graph color={props.osci.color} height={100} fn={fnFromOsci(props.osci)} />
         </Col>
         <Col>
           <Row><span>Amplitudine (A):</span>
             <InputGroup>
-              <FormControl type="number" value={amplitudine} onChange={e => setAmplitudine(parseFloat(e.target.value))}></FormControl>
+              <FormControl type="number" value={amplitudine} onChange={e => updateProp(parseFloat(e.target.value), "amplitudine")}></FormControl>
               <InputGroup.Append>
                 <InputGroup.Text>px</InputGroup.Text>
               </InputGroup.Append>
@@ -35,7 +45,7 @@ function Oscilatie(props: Props) {
           </Row>
           <Row><span>Pulsație (ω):</span>
             <InputGroup>
-              <FormControl type="number" value={pulsatie} onChange={e => setPulsatie(parseFloat(e.target.value))}></FormControl>
+              <FormControl type="number" value={pulsatie} onChange={e => updateProp(parseFloat(e.target.value), "pulsatie")}></FormControl>
               <InputGroup.Append>
                 <InputGroup.Text>rad/s</InputGroup.Text>
               </InputGroup.Append>
@@ -43,7 +53,7 @@ function Oscilatie(props: Props) {
           </Row>
           <Row><span>Faza inițială (φ<sub>0</sub>):</span>
             <InputGroup>
-              <FormControl type="number" value={fazaInitiala} onChange={e => setFazaInitiala(parseFloat(e.target.value))}></FormControl>
+              <FormControl type="number" value={fazaInitiala} onChange={e => updateProp(parseFloat(e.target.value), "fazaInitiala")}></FormControl>
               <InputGroup.Append>
                 <InputGroup.Text>rad</InputGroup.Text>
               </InputGroup.Append>

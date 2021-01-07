@@ -27,7 +27,17 @@ function App() {
       <Row><h1>Oscilații de compus</h1></Row>
       <Row xs={12}><ListGroup>
         {oscilatii.map((oscilatie, index) => {
-          return <Oscilatie osci={oscilatie} index={index} onDelete={() => deleteOsci(index)} />
+          return (
+            <Oscilatie osci={oscilatie}
+              index={index}
+              onDelete={() => deleteOsci(index)}
+              onUpdate={(o: Osci) => setOscilatii([
+                ...oscilatii.slice(0,index),
+                o,
+                ...oscilatii.slice(index+1)
+              ])}
+            />
+          );
         })}
         <ListGroup.Item className="addbutton" action active onClick={addOsci}><BsPlusCircleFill /> Adaugă oscilație nouă</ListGroup.Item>
       </ListGroup></Row>
