@@ -25,7 +25,7 @@ function App() {
   return (
     <Container>
       <Row><h1>Oscilații de compus</h1></Row>
-      <Row xs={12}><ListGroup>
+      <Row xs={12}><ListGroup className={"listgroup"}>
         {oscilatii.map((oscilatie, index) => {
           return (
             <Oscilatie osci={oscilatie}
