@@ -3,7 +3,7 @@ import { Container, ListGroup, Row } from 'react-bootstrap';
 import { BsPlusCircleFill } from 'react-icons/bs';
 import randomColor from 'randomcolor';
 
-import { Osci } from './Osci';
+import { fnFromOsci, Osci } from './Osci';
 import Graph from './Graph';
 import Oscilatie from './Oscilatie';
 
@@ -16,12 +16,19 @@ function App() {
       pulsatie: oscilatii[0] ? oscilatii[0].pulsatie : 1,
       fazaInitiala: oscilatii[0] ? oscilatii[0].fazaInitiala : 0
     }]);
-  };;
+  };
   function deleteOsci(index: number) {
     setOscilatii([
       ...oscilatii.slice(0,index),
       ...oscilatii.slice(index+1)
     ]);
+  };
+  function composedFn(i: number) {
+    var r = 0;
+    for (var oscilatie of oscilatii) {
+      r+=fnFromOsci(oscilatie)(i);
+    }
+    return r;
   };
   return (
     <Container>
@@ -47,7 +54,7 @@ function App() {
       <hr />
       <Row><h1>Oscilație rezultantă</h1></Row>
       <Row xs={12}>
-        <Graph fn={(a) => 100*Math.sin(a/10)} height={200} color="#ffffff" />
+        <Graph fn={composedFn} height={200} color="#ffffff" />
       </Row>
     </Container>
   );

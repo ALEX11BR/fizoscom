@@ -2,9 +2,9 @@ import React from 'react';
 import SmoothieComponent, { TimeSeries } from 'react-smoothie';
 
 interface Props {
-  fn: (val: number) => number;
-  height: number;
-  color: string;
+  fn: (val: number) => number,
+  height: number,
+  color: string
 }
 
 function Graph(props: Props) {
