@@ -1,11 +1,13 @@
 import React from 'react';
-import { ListGroupItem, Col, Row } from 'react-bootstrap';
+import { ListGroupItem, Col, Row, Button } from 'react-bootstrap';
+import { BsTrashFill } from 'react-icons/bs';
 
 import Graph from './Graph';
 
 interface Props {
   osci: Osci,
-  index: number
+  index: number,
+  onDelete: () => void
 }
 
 function Oscilatie(props: Props) {
@@ -14,6 +16,7 @@ function Oscilatie(props: Props) {
       <Row>
         <Col xs={1}>
           <b>{props.index+1}.</b>
+          <Button variant="danger" size="sm" onClick={props.onDelete}><BsTrashFill /></Button>
         </Col>
         <Col>
           <Graph color={props.osci.color} height={100} fn={(a) => 50*Math.sin(a/10+5)} />
