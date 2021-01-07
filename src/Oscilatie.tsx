@@ -13,23 +13,23 @@ function Oscilatie(props: Props) {
   return (
     <TableRow>
         <TableCell>
-          <IconButton size="small" onClick={() => props.onDelete(props.index)}><DeleteForever /></IconButton>
+          <IconButton color="secondary" size="small" onClick={() => props.onDelete(props.index)}><DeleteForever /></IconButton>
         </TableCell>
         <TableCell>
           <Graph color={props.osci.color} height={100} fn={(a) => 50*Math.sin(a/10+5)} />
         </TableCell>
         <TableCell>
-          <p>Amplitudine&nbsp;(A):
+          <p>Amplitudine&nbsp;(A):&nbsp;
             <Input value={props.osci.amplitudine} endAdornment={<InputAdornment position="end">
               px
             </InputAdornment>} />
           </p>
-          <p>Pulsație&nbsp;(ω):
+          <p>Pulsație&nbsp;(ω):&nbsp;
             <Input value={props.osci.pulsatie} endAdornment={<InputAdornment position="end">
               rad/s
             </InputAdornment>} />
           </p>
-          <p>Faza&nbsp;inițială&nbsp;(φ<sub>0</sub>):
+          <p>Faza&nbsp;inițială&nbsp;(φ<sub>0</sub>):&nbsp;
             <Input value={props.osci.fazaInitiala} endAdornment={<InputAdornment position="end">
               rad
             </InputAdornment>} />

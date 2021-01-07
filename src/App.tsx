@@ -11,9 +11,9 @@ function App() {
   function addOsci() {
     setOscilatii([ ...oscilatii, {
       color: randomColor(),
-      amplitudine: oscilatii[0].amplitudine || 10,
-      pulsatie: oscilatii[0].pulsatie || 1,
-      fazaInitiala: oscilatii[0].fazaInitiala || 0
+      amplitudine: oscilatii[0] ? oscilatii[0].amplitudine : 10,
+      pulsatie: oscilatii[0] ? oscilatii[0].pulsatie : 1,
+      fazaInitiala: oscilatii[0] ? oscilatii[0].fazaInitiala : 0
     }]);
   };
   function deleteOsci(index: number) {
