@@ -19,7 +19,9 @@ function Graph(props: Props) {
      data: line,
      strokeStyle: props.color,
      lineWidth: 4,
-   }]}/>
+   }]} grid={{
+    verticalSections: props.height/25
+   }}/>
   );
 }
 
